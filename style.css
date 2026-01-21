@@ -1,0 +1,32 @@
+.controls {
+  display: flex;
+  flex-direction: column; /* Stack them for better mobile/small screen fit */
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+/* This makes both dropdowns and the button consistent */
+select, button {
+  width: 100%; 
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* Optional: If you want them side-by-side on wide screens */
+@media (min-width: 600px) {
+  .controls {
+    flex-direction: row;
+  }
+  #courseSelect {
+    flex: 3; /* Gives the course list more room */
+  }
+  #semesterSelect {
+    flex: 1;
+  }
+  #addBtn {
+    flex: 1;
+  }
+}
