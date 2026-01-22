@@ -6,28 +6,30 @@
   </head>
   <body>
     <header class="top-bar">
+      <div id="header-info" class="header-info hidden">
+        <div class="header-line">School: University of Windsor</div>
+        <div class="header-line">Program: Bachelor of Computer Science</div>
+      </div>
       <button class="login-btn">Login / Signup</button>
     </header>
 
-    <div class="container">
+    <div id="onboarding-view" class="container">
       <div class="form-grid">
         <div class="column left">
           <div class="form-group">
             <label>Country</label>
-            <select class="box-input">
+            <select class="box-input" id="countryInput">
               <option value=""></option>
               <option value="canada">Canada</option>
             </select>
           </div>
-
           <div class="form-group">
             <label>School</label>
-            <select class="box-input">
+            <select class="box-input" id="schoolInput">
               <option value=""></option>
               <option value="uwindsor">University of Windsor</option>
             </select>
           </div>
-
           <div class="form-group">
             <label>Department</label>
             <select class="box-input">
@@ -35,7 +37,6 @@
               <option value="cs">Computer Science</option>
             </select>
           </div>
-
           <div class="form-group">
             <label>Program</label>
             <select class="box-input">
@@ -53,7 +54,6 @@
               <option value="fall">Fall 2026</option>
             </select>
           </div>
-
           <div class="form-group">
             <label>Course Load</label>
             <div class="radio-group">
@@ -65,12 +65,136 @@
               </label>
             </div>
           </div>
-
           <div class="submit-container">
-            <button class="submit-btn">Submit</button>
+            <button id="submitBtn" class="submit-btn">Submit</button>
           </div>
         </div>
       </div>
     </div>
+
+    <div id="planner-view" class="container hidden">
+      <div class="planner-grid">
+        <div class="semester-column">
+          <div class="semester-card">
+            <h2 class="sem-title">SEM [1] – [FALL] [2026] [F/P]</h2>
+
+            <div class="course-list">
+              <div
+                class="course-item"
+                onclick="
+                  showCourseInfo(
+                    'COMP 1000',
+                    'Key Concepts in CS',
+                    'Dr. Smith',
+                    'M',
+                  )
+                "
+              >
+                <div class="course-left">
+                  <span class="c-code">COMP 1000</span>
+                  <span class="c-name">Key Concepts in CS</span>
+                </div>
+                <span class="c-tag">M</span>
+              </div>
+
+              <div
+                class="course-item"
+                onclick="
+                  showCourseInfo(
+                    'COMP 1400',
+                    'Intro to Programming I',
+                    'Dr. Doe',
+                    'M',
+                  )
+                "
+              >
+                <div class="course-left">
+                  <span class="c-code">COMP 1400</span>
+                  <span class="c-name">Intro to Programming I</span>
+                </div>
+                <span class="c-tag">M</span>
+              </div>
+
+              <div
+                class="course-item"
+                onclick="
+                  showCourseInfo(
+                    'MATH 1250',
+                    'Linear Algebra I',
+                    'Dr. Algebra',
+                    'P',
+                  )
+                "
+              >
+                <div class="course-left">
+                  <span class="c-code">MATH 1250</span>
+                  <span class="c-name">Linear Algebra I</span>
+                </div>
+                <span class="c-tag">P</span>
+              </div>
+
+              <div
+                class="course-item"
+                onclick="
+                  showCourseInfo(
+                    'MATH 1720',
+                    'Differential Calculus',
+                    'Dr. Newton',
+                    'P',
+                  )
+                "
+              >
+                <div class="course-left">
+                  <span class="c-code">MATH 1720</span>
+                  <span class="c-name">Differential Calculus</span>
+                </div>
+                <span class="c-tag">P</span>
+              </div>
+
+              <div
+                class="course-item"
+                onclick="
+                  showCourseInfo(
+                    'PHIL 1290',
+                    'Contemporary Moral Issues',
+                    'Dr. Ethics',
+                    'E',
+                  )
+                "
+              >
+                <div class="course-left">
+                  <span class="c-code">PHIL 1290</span>
+                  <span class="c-name">Contemporary Moral Issues</span>
+                </div>
+                <span class="c-tag">E</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-column">
+          <div id="info-tile" class="info-card hidden-tile">
+            <h3>Course Details</h3>
+            <ul class="info-list">
+              <li>
+                <strong>Course Name:</strong> <span id="info-name"></span>
+              </li>
+              <li><strong>Professor:</strong> <span id="info-prof"></span></li>
+              <li>
+                <strong>Description:</strong> Standard course description goes
+                here.
+              </li>
+              <li><strong>Class Date & Time:</strong> Mon/Wed 10:00 AM</li>
+              <li>
+                <strong>Tag:</strong>
+                <span id="info-tag"></span> (Major/Program/Elective)
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
   </body>
 </html>

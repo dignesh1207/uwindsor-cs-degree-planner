@@ -1,41 +1,41 @@
-import { courses } from "./data/courses.js"; 
-import { DegreePlanner } from "./logic/planner.js";
+// Get DOM Elements
+const submitBtn = document.getElementById("submitBtn");
+const onboardingView = document.getElementById("onboarding-view");
+const plannerView = document.getElementById("planner-view");
+const headerInfo = document.getElementById("header-info");
+const infoTile = document.getElementById("info-tile");
 
-const planner = new DegreePlanner();
-const courseSelect = document.getElementById("courseSelect");
-const output = document.getElementById("output");
+// Info Tile Elements to update
+const infoName = document.getElementById("info-name");
+const infoProf = document.getElementById("info-prof");
+const infoTag = document.getElementById("info-tag");
 
-// Populate Dropdown
-courses.forEach(c => {
-  const opt = document.createElement("option");
-  opt.value = c.code;
-  opt.textContent = `${c.code} - ${c.name}`;
-  courseSelect.appendChild(opt);
+// Event Listener for Submit Button
+submitBtn.addEventListener("click", () => {
+  // 1. Hide the Onboarding Form
+  onboardingView.classList.add("hidden");
+
+  // 2. Show the Planner View
+  plannerView.classList.remove("hidden");
+
+  // 3. Show the extra Header Info
+  headerInfo.classList.remove("hidden");
 });
 
-function renderUI() {
-  output.innerHTML = ""; // Clear current view
-  
-  for (const semester in planner.plan) {
-    if (planner.plan[semester].length > 0) {
-      const section = document.createElement("div");
-      section.className = "semester-block";
-      section.innerHTML = `<h3>${semester}</h3><ul>${planner.plan[semester]
-        .map(code => `<li>${code}</li>`).join("")}</ul>`;
-      output.appendChild(section);
-    }
-  }
-}
+// Function to show course info (called by onclick in HTML)
+window.showCourseInfo = function (code, name, prof, tag) {
+  // 1. Populate data
+  infoName.textContent = `${code} - ${name}`;
+  infoProf.textContent = prof;
 
-document.getElementById("addBtn").onclick = () => {
-  const code = courseSelect.value;
-  const semester = document.getElementById("semesterSelect").value;
-  const course = courses.find(c => c.code === code);
+  // Expand tag meaning
+  let tagFull = tag;
+  if (tag === "M") tagFull = "Major Requirement";
+  if (tag === "P") tagFull = "Program Requirement";
+  if (tag === "E") tagFull = "Elective";
 
-  try {
-    planner.addCourse(course, semester);
-    renderUI();
-  } catch (e) {
-    alert(e.message);
-  }
+  infoTag.textContent = `${tagFull} (${tag})`;
+
+  // 2. Make the tile visible
+  infoTile.classList.remove("hidden-tile");
 };
