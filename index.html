@@ -76,13 +76,15 @@
       <div class="planner-grid">
         <div class="semester-column">
           <div class="semester-card">
-            <h2 class="sem-title">SEM [1] – [FALL] [2026] [F/P]</h2>
+            <h2 class="sem-title">
+              SEM [1] – [FALL] [2026] [<span id="sem-load-tag">F/P</span>]
+            </h2>
 
             <div class="course-list">
               <div
                 class="course-item"
                 onclick="
-                  showCourseInfo(
+                  toggleCourseInfo(
                     'COMP 1000',
                     'Key Concepts in CS',
                     'Dr. Smith',
@@ -100,7 +102,7 @@
               <div
                 class="course-item"
                 onclick="
-                  showCourseInfo(
+                  toggleCourseInfo(
                     'COMP 1400',
                     'Intro to Programming I',
                     'Dr. Doe',
@@ -118,7 +120,7 @@
               <div
                 class="course-item"
                 onclick="
-                  showCourseInfo(
+                  toggleCourseInfo(
                     'MATH 1250',
                     'Linear Algebra I',
                     'Dr. Algebra',
@@ -136,7 +138,7 @@
               <div
                 class="course-item"
                 onclick="
-                  showCourseInfo(
+                  toggleCourseInfo(
                     'MATH 1720',
                     'Differential Calculus',
                     'Dr. Newton',
@@ -154,7 +156,7 @@
               <div
                 class="course-item"
                 onclick="
-                  showCourseInfo(
+                  toggleCourseInfo(
                     'PHIL 1290',
                     'Contemporary Moral Issues',
                     'Dr. Ethics',
@@ -173,23 +175,42 @@
         </div>
 
         <div class="info-column">
-          <div id="info-tile" class="info-card hidden-tile">
-            <h3>Course Details</h3>
-            <ul class="info-list">
-              <li>
-                <strong>Course Name:</strong> <span id="info-name"></span>
-              </li>
-              <li><strong>Professor:</strong> <span id="info-prof"></span></li>
-              <li>
-                <strong>Description:</strong> Standard course description goes
-                here.
-              </li>
-              <li><strong>Class Date & Time:</strong> Mon/Wed 10:00 AM</li>
-              <li>
-                <strong>Tag:</strong>
-                <span id="info-tag"></span> (Major/Program/Elective)
-              </li>
-            </ul>
+          <div id="info-tile" class="semester-card hidden-tile">
+            <div class="info-header-area">
+              <h1 id="info-code">CODE 0000</h1>
+              <h3 id="info-name">Course Name</h3>
+            </div>
+
+            <div class="info-meta-row">
+              <div class="prof-name" id="info-prof-name">Dr. Name</div>
+              <div id="rmp-box" class="rmp-box">
+                <span id="rmp-score">0.0</span><span class="rmp-max">/5</span>
+              </div>
+            </div>
+
+            <div class="schedule-row">
+              <div class="sch-col">
+                <strong>Lec:</strong> Mon – Wed<br />
+                8:30 AM – 9:50 AM
+              </div>
+              <div class="sch-col">
+                <strong>Lab:</strong> Fri<br />
+                4:00 PM – 5:20 PM
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button class="replace-btn">Replacement Request</button>
+            </div>
+
+            <div class="desc-box">
+              this will be filled with description and depending on how long it
+              is the tile will stretch vertically.
+            </div>
+
+            <div class="tag-row">
+              <div id="info-tag-pill" class="tag-pill">M Major Requirement</div>
+            </div>
           </div>
         </div>
       </div>
