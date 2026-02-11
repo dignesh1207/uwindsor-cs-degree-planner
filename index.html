@@ -6,14 +6,56 @@
   </head>
   <body>
     <header class="top-bar">
-      <div id="header-info" class="header-info hidden">
-        <div class="header-line">School: University of Windsor</div>
-        <div class="header-line">Program: Bachelor of Computer Science</div>
+      <div
+        class="left-nav"
+        style="display: flex; align-items: center; gap: 20px"
+      >
+        <a
+          href="#"
+          id="homeBtn"
+          style="
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+          "
+          >Home</a
+        >
+
+        <div id="header-info" class="header-info hidden">
+          <div class="header-line">School: University of Windsor</div>
+          <div class="header-line">Program: Bachelor of Computer Science</div>
+        </div>
       </div>
       <button class="login-btn">Login / Signup</button>
     </header>
 
     <div id="onboarding-view" class="container">
+      <section class="hero-content">
+        <h1>Course Picker Helper</h1>
+        <p class="hero-desc">
+          This is a helper for post-secondary students to plan their degrees and
+          view ratings for courses and professors.
+        </p>
+
+        <div class="catalog-summary">
+          <div class="summary-card">
+            <strong>Course Catalog</strong>
+            <p>
+              Check ratings from other students to see what they think about
+              your future classes.
+            </p>
+          </div>
+          <div class="summary-card">
+            <strong>Professor Insights</strong>
+            <p>
+              View specific scores for professors to help you choose the right
+              section.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <div class="form-grid">
         <div class="column left">
           <div class="form-group">
@@ -58,7 +100,8 @@
             <label>Course Load</label>
             <div class="radio-group">
               <label class="radio-option">
-                <input type="radio" name="load" value="full" /> Full time
+                <input type="radio" name="load" value="full" checked /> Full
+                time
               </label>
               <label class="radio-option">
                 <input type="radio" name="load" value="part" /> Part time

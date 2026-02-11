@@ -269,3 +269,65 @@ label {
 .tag-green {
   background-color: #27ae60;
 }
+
+/* Ensure the top bar elements align properly */
+.left-nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Style for the new Home link */
+#homeBtn:hover {
+  text-decoration: underline;
+  color: #ddd;
+}
+
+/* the .hero-content classes at the bottom of your file */
+.hero-content {
+  text-align: left; /* Aligns text to the left */
+  padding: 20px 0 40px 0; /* Top, Right, Bottom, Left padding */
+  border-bottom: 2px solid #eee;
+  margin-bottom: 40px;
+}
+
+.hero-content h1 {
+  font-size: 42px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.hero-desc {
+  font-size: 18px;
+  color: #555;
+  max-width: 800px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.catalog-summary {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.summary-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.summary-card strong {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.summary-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #666;
+}

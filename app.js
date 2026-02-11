@@ -97,3 +97,15 @@ window.toggleCourseInfo = function (code, name, prof, tag) {
   // Show Tile
   infoTile.classList.remove("hidden-tile");
 };
+
+// Home Button Logic
+const homeBtn = document.getElementById("homeBtn");
+
+homeBtn.addEventListener("click", (e) => {
+  e.preventDefault(); // Prevent page reload
+
+  // Reset visibility to show onboarding and hide the planner
+  onboardingView.classList.remove("hidden");
+  plannerView.classList.add("hidden");
+  headerInfo.classList.add("hidden");
+});
