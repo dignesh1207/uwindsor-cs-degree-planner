@@ -30,6 +30,24 @@
       <button class="login-btn">Login / Signup</button>
     </header>
 
+    <div id="login-modal" class="container hidden">
+      <div class="summary-card" style="margin: 0 auto; width: 100%; max-width: 400px;">
+        <h2 style="margin-top: 0;">Login</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label style="font-size: 16px;">Email</label>
+            <input type="email" id="login-email" class="box-input" style="margin-bottom: 15px;" required />
+          </div>
+          <div class="form-group">
+            <label style="font-size: 16px;">Password</label>
+            <input type="password" id="login-password" class="box-input" style="margin-bottom: 15px;" required />
+          </div>
+          <button type="submit" class="submit-btn" style="width: 100%; padding: 10px; font-size: 18px;">Sign In</button>
+        </form>
+        <p id="login-message" style="color: red; font-weight: bold; margin-top: 15px;"></p>
+      </div>
+    </div>
+
     <div id="onboarding-view" class="container">
       <section class="hero-content">
         <h1>Course Picker Helper</h1>

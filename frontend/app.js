@@ -109,3 +109,55 @@ homeBtn.addEventListener("click", (e) => {
   plannerView.classList.add("hidden");
   headerInfo.classList.add("hidden");
 });
+
+// --- Login & Authentication Logic ---
+const loginBtn = document.querySelector('.login-btn');
+const loginModal = document.getElementById('login-modal');
+const loginForm = document.getElementById('login-form');
+const loginMessage = document.getElementById('login-message');
+
+// Toggle the login form visibility
+loginBtn.addEventListener('click', () => {
+  loginModal.classList.toggle('hidden');
+  onboardingView.classList.toggle('hidden'); // Hide the main form when logging in
+});
+
+// Handle the actual login submission
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault(); // Prevent the page from reloading
+  
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  
+  try {
+    // Make the POST request to your new backend
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+    
+    const data = await response.json();
+    
+    if (response.ok) {
+      // Success! Save the JWT token to the browser's Local Storage
+      localStorage.setItem('token', data.token);
+      
+      // Update the UI to show they are logged in
+      loginModal.classList.add('hidden');
+      onboardingView.classList.remove('hidden');
+      loginBtn.textContent = 'Logged In';
+      loginMessage.textContent = '';
+      
+      alert('Successfully logged in! Your token is saved.');
+    } else {
+      // Show the error message from the server (e.g., "Invalid credentials")
+      loginMessage.textContent = data.message || 'Login failed.';
+    }
+  } catch (error) {
+    console.error('Fetch error:', error);
+    loginMessage.textContent = 'Server error. Make sure your backend is running!';
+  }
+});
