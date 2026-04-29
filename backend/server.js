@@ -11,6 +11,8 @@ connectDB();
 app.use(cors());
 app.use(express.json()); // Allows the server to understand incoming JSON requests
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/user', require('./routes/userRoutes'));
+app.use('/api/courses', require('./routes/courseRoutes'));
 
 // A basic test route
 app.get('/api/health', (req, res) => {
