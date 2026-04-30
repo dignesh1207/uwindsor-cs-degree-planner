@@ -30,7 +30,50 @@ submitBtn.addEventListener("click", () => {
   onboardingView.classList.add("hidden");
   plannerView.classList.remove("hidden");
   headerInfo.classList.remove("hidden");
+
+  // Fetch and display courses from the database when the view opens!
+  loadCourses(selectedLoad);
 });
+
+// --- Dynamic Course Rendering ---
+const courseListContainer = document.getElementById('course-list-container');
+
+// Add 'loadType' as a parameter
+async function loadCourses(loadType) {
+  try {
+    const response = await fetch('http://localhost:5000/api/courses');
+    const courses = await response.json();
+
+    courseListContainer.innerHTML = '';
+
+    // Limit the courses based on the load type
+    let coursesToRender = courses;
+    if (loadType === 'F') {
+      coursesToRender = courses.slice(0, 5); // Max 5 for full-time
+    } else if (loadType === 'P') {
+      coursesToRender = courses.slice(0, 3); // Max 3 for part-time
+    }
+
+    // Loop through the limited array instead of all courses
+    coursesToRender.forEach(course => {
+      const courseDiv = document.createElement('div');
+      courseDiv.className = 'course-item';
+      courseDiv.onclick = () => toggleCourseInfo(course.code, course.name, 'TBA', 'M');
+      courseDiv.innerHTML = `
+        <div class="course-left">
+          <span class="c-code">${course.code}</span>
+          <span class="c-name">${course.name}</span>
+        </div>
+        <span class="c-tag">M</span>
+      `;
+      courseListContainer.appendChild(courseDiv);
+    });
+
+  } catch (error) {
+    console.error('Error fetching courses:', error);
+    courseListContainer.innerHTML = '<p style="color: red;">Failed to load catalog from database.</p>';
+  }
+}
 
 // Toggle Logic
 window.toggleCourseInfo = function (code, name, prof, tag) {
@@ -116,10 +159,9 @@ const loginModal = document.getElementById('login-modal');
 const loginForm = document.getElementById('login-form');
 const loginMessage = document.getElementById('login-message');
 
-// Toggle the login form visibility
+// 1. Open the modal (Strictly remove hidden)
 loginBtn.addEventListener('click', () => {
-  loginModal.classList.toggle('hidden');
-  onboardingView.classList.toggle('hidden'); // Hide the main form when logging in
+  loginModal.classList.remove('hidden');
 });
 
 // Handle the actual login submission
@@ -145,9 +187,8 @@ loginForm.addEventListener('submit', async (e) => {
       // Success! Save the JWT token to the browser's Local Storage
       localStorage.setItem('token', data.token);
       
-      // Update the UI to show they are logged in
+      // 2. Update the UI to show they are logged in (Removed the onboardingView line)
       loginModal.classList.add('hidden');
-      onboardingView.classList.remove('hidden');
       loginBtn.textContent = 'Logged In';
       loginMessage.textContent = '';
       
@@ -159,5 +200,15 @@ loginForm.addEventListener('submit', async (e) => {
   } catch (error) {
     console.error('Fetch error:', error);
     loginMessage.textContent = 'Server error. Make sure your backend is running!';
+  }
+});
+
+// Close the modal if they click the dark background outside the white box
+loginModal.addEventListener('click', (e) => {
+  // e.target is the exact element the user clicked.
+  // If they clicked the modal background, hide it. 
+  // If they clicked the form inside, it ignores this.
+  if (e.target === loginModal) {
+    loginModal.classList.add('hidden');
   }
 });

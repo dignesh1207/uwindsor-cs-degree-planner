@@ -30,7 +30,7 @@
       <button class="login-btn">Login / Signup</button>
     </header>
 
-    <div id="login-modal" class="container hidden">
+    <div id="login-modal" class="hidden">
       <div class="summary-card" style="margin: 0 auto; width: 100%; max-width: 400px;">
         <h2 style="margin-top: 0;">Login</h2>
         <form id="login-form">
@@ -141,18 +141,8 @@
               SEM [1] – [FALL] [2026] [<span id="sem-load-tag">F/P</span>]
             </h2>
 
-            <div class="course-list">
-              <div
-                class="course-item"
-                onclick="
-                  toggleCourseInfo(
-                    'COMP 1000',
-                    'Key Concepts in CS',
-                    'Dr. Smith',
-                    'M',
-                  )
-                "
-              >
+            <div class="course-list" id="course-list-container">
+              <div>
                 <div class="course-left">
                   <span class="c-code">COMP 1000</span>
                   <span class="c-name">Key Concepts in CS</span>
